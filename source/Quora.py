@@ -16,10 +16,14 @@ from bs4 import BeautifulSoup
 
 #zhihu
 base_url="https://www.zhihu.com/search"
-kw = raw_input("请输入关键字（多个关键字请以空格隔开）:".decode('utf-8').encode('gbk'))
+kw = raw_input("请输入关键字（多个关键字请以空格隔开）:".decode("utf-8").encode("gbk"))
+print kw
+kw=kw.decode("gbk").encode("utf-8")
+print kw.decode("utf-8")
 
 #kw="java"
 keywords = kw.split()
+print keywords
 #zhihu
 search_url=base_url+"?q=" + '+'.join(keywords) +"&type=question"
 
@@ -32,14 +36,25 @@ print search_url
 		#'User-Agent':"Mozilla/5.0 (Windows NT 5.1; rv:34.0) Gecko/20100101 Firefox/34.0",
 		#'Referer':"https://www.quora.com/search"
 		#}
-sName = string.zfill(1,2) + '.html'#自动填充成六位的文件名
-print '正在下载第'.decode('utf-8').encode('gbk')+ str(2) + '个网页，并将其存储为'.decode('utf-8').encode('gbk') + sName + '......'
-f = open(sName,'w+')
+#sName = string.zfill(1,2) + '.html'#自动填充成六位的文件名
+#path=".././temp/"
+#sName = raw_input('input filename: ')
+#fName=path + sName
+#if os.path.exists(path):
+	#print "ERROR: '%s' already exists" %sName
+#else:
+	#break
 
-m = urllib2.urlopen(search_url)
-result=m.read()
-f.write(result)
-f.close()
+
+#print '正在下载第'.decode('utf-8').encde('gbk')+ str(2) + '个网页，并将其存储为'.decode('utf-8').encode('gbk') + sName + '......'
+#f = open(fName,'w+')
+
+m = requests.get(search_url)
+print m.text.decode("utf-8").encode("gbk")
+#m = urllib2.urlopen(search_url)
+#result=m.read()
+#f.write(result)
+#f.close()
 #r=requests.get(search_url)
 #print type(r.text)
 #print r.text.decode('utf-8').encode('gbk')
