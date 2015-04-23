@@ -50,7 +50,7 @@ print search_url
 #f = open(fName,'w+')
 
 m = requests.get(search_url)
-print m.text.decode("utf-8").encode("gbk")
+print m.text
 #m = urllib2.urlopen(search_url)
 #result=m.read()
 #f.write(result)

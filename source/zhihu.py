@@ -721,7 +721,7 @@ class Answer:
                 img["src"] = img["data-actualsrc"]
             noscript_list = soup.find_all("noscript")
             for noscript in noscript_list:
-                noscript.extract()
+                noscript.extract()  #去除网页答案中的图片，以纯文字内容（content）返回
             content = soup
             self.content = content
             return content
